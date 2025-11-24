@@ -29,7 +29,6 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const { toast } = useToast();
 
-
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -58,7 +57,6 @@ export default function Contact() {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,26 +94,23 @@ export default function Contact() {
 
     tempForm.submit();
 
-   setTimeout(() => {
-  toast({
-    title: "Message Sent Successfully",
-    description: "Thank you for contacting Shree Balaji Foundation. We will get in touch soon!",
-    variant: "default",   
-  });
+    setTimeout(() => {
+      toast({
+        title: "Message Sent Successfully",
+        description: "Thank you for contacting Shree Balaji Foundation. We will get in touch soon!",
+      });
 
-  setName("");
-  setEmail("");
-  setPhone("");
-  setSubject("");
-  setMessage("");
+      setName("");
+      setEmail("");
+      setPhone("");
+      setSubject("");
+      setMessage("");
 
-  document.body.removeChild(iframe);
-}, 1000);
-
+      document.body.removeChild(iframe);
+    }, 1000);
 
     document.body.removeChild(tempForm);
   };
-
 
   const contactInfo = [
     {
@@ -123,7 +118,7 @@ export default function Contact() {
       title: "Email",
       value: (
         <span
-          className="cursor-pointer hover:text-primary"
+          className="cursor-pointer hover:text-primary text-sm"
           onClick={() =>
             window.open(
               "https://mail.google.com/mail/?view=cm&fs=1&to=contact@shreebalajifoundation.org.in",
@@ -135,14 +130,12 @@ export default function Contact() {
         </span>
       ),
       description: "Send us an email anytime",
-      action: null
     },
-
     {
       icon: Phone,
       title: "Phone",
       value: (
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-2 items-center text-sm">
           <span
             className="cursor-pointer hover:text-primary"
             onClick={() => (window.location = "tel:+918087678977")}
@@ -161,9 +154,7 @@ export default function Contact() {
         </div>
       ),
       description: "Mon–Fri from 9am to 6pm",
-      action: null
     },
-
     {
       icon: MapPin,
       title: "Address",
@@ -175,102 +166,107 @@ export default function Contact() {
           "_blank"
         )
     },
-
     {
       icon: Clock,
       title: "Working Hours",
       value: "Mon–Fri: 9:00 AM – 6:00 PM",
       description: "Saturday: 10:00 AM – 4:00 PM",
-      action: null
     }
   ];
-
 
   return (
     <PageLayout>
       <PageHero
         title="Get In Touch"
         subtitle="We'd Love to Hear From You"
-        description="Have questions about our programs? Want to volunteer or donate? Reach out to us and we'll get back to you as soon as possible."
+        description="Have questions about our programs? Want to volunteer or donate? Reach out to us."
         tagline="Contact Us"
       />
 
       <AnimatedSection background="white">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 px-2 sm:px-4">
 
+          {/* LEFT FORM */}
           <div className="order-2 lg:order-1">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Send us a Message</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+              Send us a Message
+            </h2>
 
-            <Card className="p-4 sm:p-6 md:p-8 border-2">
-              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <Card className="p-3 sm:p-5 md:p-7 border-2">
+              <form onSubmit={handleSubmit} className="space-y-4">
 
-                <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
+                {/* NAME + EMAIL */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <Label>Full Name *</Label>
-                    <Input 
-                      value={name} 
-                      onChange={(e) => setName(e.target.value)} 
-                      required 
-                      data-testid="input-name"
+                    <Label className="text-sm">Full Name *</Label>
+                    <Input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="text-sm py-2"
+                      required
                     />
-                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                   </div>
 
                   <div>
-                    <Label>Email *</Label>
-                    <Input 
-                      type="email" 
-                      value={email} 
-                      onChange={(e) => setEmail(e.target.value)} 
-                      required 
-                      data-testid="input-email"
+                    <Label className="text-sm">Email *</Label>
+                    <Input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="text-sm py-2"
+                      required
                     />
-                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                   </div>
                 </div>
 
+                {/* PHONE */}
                 <div>
-                  <Label>Phone *</Label>
-                  <Input 
-                    type="tel" 
-                    value={phone} 
-                    onChange={(e) => setPhone(e.target.value)} 
-                    required 
-                    data-testid="input-phone"
+                  <Label className="text-sm">Phone *</Label>
+                  <Input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="text-sm py-2"
+                    required
                   />
-                  {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                 </div>
 
+                {/* SUBJECT */}
                 <div>
-                  <Label>Subject *</Label>
-                  <Input 
-                    value={subject} 
-                    onChange={(e) => setSubject(e.target.value)} 
-                    required 
-                    data-testid="input-subject"
-                  />
-                </div>
-
-                <div>
-                  <Label>Message *</Label>
-                  <Textarea 
-                    rows={6} 
-                    value={message} 
-                    onChange={(e) => setMessage(e.target.value)} 
-                    required 
-                    data-testid="input-message"
+                  <Label className="text-sm">Subject *</Label>
+                  <Input
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    className="text-sm py-2"
+                    required
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full" data-testid="button-submit">
+                {/* MESSAGE */}
+                <div>
+                  <Label className="text-sm">Message *</Label>
+                  <Textarea
+                    rows={5}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="text-sm"
+                    required
+                  />
+                </div>
+
+                <Button type="submit" size="lg" className="w-full text-base py-3">
                   Send Message
                 </Button>
               </form>
             </Card>
           </div>
 
-          <div className="space-y-4 md:space-y-6 order-1 lg:order-2">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Contact Information</h2>
+          {/* RIGHT CONTACT INFO */}
+          <div className="space-y-4 order-1 lg:order-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Contact Information</h2>
 
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
@@ -278,42 +274,43 @@ export default function Contact() {
               return (
                 <Card
                   key={index}
-                  className={`p-4 md:p-6 hover-elevate ${info.action ? "cursor-pointer" : ""}`}
+                  className="p-3 sm:p-5 hover-elevate cursor-pointer"
                   onClick={info.action ? info.action : undefined}
-                  data-testid={`card-contact-${index}`}
                 >
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-5 w-5 md:h-6 md:w-6 text-white" />
+                  <div className="flex gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                      <Icon className="h-5 w-5 text-white" />
                     </div>
 
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-base md:text-lg font-bold">{info.title}</h3>
-                      <div className="font-medium text-sm md:text-base break-words">{info.value}</div>
-                      <p className="text-xs md:text-sm opacity-80 mt-1">{info.description}</p>
+                    <div className="flex-1">
+                      <h3 className="text-sm sm:text-base font-bold">{info.title}</h3>
+                      <div className="text-sm">{info.value}</div>
+                      <p className="text-xs opacity-80 mt-1">{info.description}</p>
                     </div>
                   </div>
                 </Card>
               );
             })}
 
-            <Card className="p-6 md:p-8 bg-primary text-white mt-6 md:mt-8" data-testid="card-urgent">
-              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Need Immediate Assistance?</h3>
-              <p className="mb-4 md:mb-6 text-sm md:text-base">For urgent matters, call us or add "URGENT" in your email subject line.</p>
+            {/* URGENT BOX */}
+            <Card className="p-5 bg-primary text-white mt-5">
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Need Immediate Assistance?</h3>
+              <p className="text-sm mb-4">
+                For urgent matters, call us or add "URGENT" in your email subject line.
+              </p>
               <Button
                 variant="outline"
-                className="border-white text-white w-full sm:w-auto"
+                className="border-white text-white w-full"
                 onClick={() => (window.location = "tel:+918087678977")}
-                data-testid="button-call-now"
               >
                 Call Now
               </Button>
             </Card>
-           
-          </div>
 
+          </div>
         </div>
       </AnimatedSection>
+
       <ScrollNavigation />
     </PageLayout>
   );
