@@ -142,18 +142,18 @@ export default function Contact() {
       icon: Phone,
       title: "Phone",
       value: (
-        <div className="flex gap-3 items-center">
+        <div className="flex flex-wrap gap-2 items-center">
           <span
-            className="cursor-pointer hover:text-primary"
+            className="cursor-pointer hover:text-primary text-sm sm:text-base"
             onClick={() => (window.location = "tel:+918087678977")}
           >
             +91 8087678977
           </span>
 
-          <span className="opacity-60">|</span>
+          <span className="opacity-60 hidden sm:inline">|</span>
 
           <span
-            className="cursor-pointer hover:text-primary"
+            className="cursor-pointer hover:text-primary text-sm sm:text-base"
             onClick={() => (window.location = "tel:+918459485202")}
           >
             +91 8459485202
@@ -196,15 +196,15 @@ export default function Contact() {
       />
 
       <AnimatedSection background="white">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
 
           <div className="order-2 lg:order-1">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Send us a Message</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Send us a Message</h2>
 
-            <Card className="p-4 sm:p-6 md:p-8 border-2">
-              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <Card className="p-3 sm:p-6 md:p-8 border-2">
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-6">
 
-                <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                   <div>
                     <Label>Full Name *</Label>
                     <Input 
@@ -269,8 +269,8 @@ export default function Contact() {
             </Card>
           </div>
 
-          <div className="space-y-4 md:space-y-6 order-1 lg:order-2">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Contact Information</h2>
+          <div className="space-y-3 sm:space-y-4 md:space-y-6 order-1 lg:order-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Contact Information</h2>
 
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
@@ -278,18 +278,18 @@ export default function Contact() {
               return (
                 <Card
                   key={index}
-                  className={`p-4 md:p-6 hover-elevate ${info.action ? "cursor-pointer" : ""}`}
+                  className={`p-3 sm:p-4 md:p-6 hover-elevate ${info.action ? "cursor-pointer" : ""}`}
                   onClick={info.action ? info.action : undefined}
                   data-testid={`card-contact-${index}`}
                 >
-                  <div className="flex items-start gap-3 md:gap-4">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-5 w-5 md:h-6 md:w-6 text-white" />
+                  <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" />
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-base md:text-lg font-bold">{info.title}</h3>
-                      <div className="font-medium text-sm md:text-base break-words">{info.value}</div>
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold">{info.title}</h3>
+                      <div className="font-medium text-xs sm:text-sm md:text-base break-words overflow-wrap-anywhere">{info.value}</div>
                       <p className="text-xs md:text-sm opacity-80 mt-1">{info.description}</p>
                     </div>
                   </div>
@@ -297,9 +297,9 @@ export default function Contact() {
               );
             })}
 
-            <Card className="p-6 md:p-8 bg-primary text-white mt-6 md:mt-8" data-testid="card-urgent">
-              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Need Immediate Assistance?</h3>
-              <p className="mb-4 md:mb-6 text-sm md:text-base">For urgent matters, call us or add "URGENT" in your email subject line.</p>
+            <Card className="p-4 sm:p-6 md:p-8 bg-primary text-white mt-4 sm:mt-6 md:mt-8" data-testid="card-urgent">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Need Immediate Assistance?</h3>
+              <p className="mb-3 sm:mb-4 md:mb-6 text-xs sm:text-sm md:text-base">For urgent matters, call us or add "URGENT" in your email subject line.</p>
               <Button
                 variant="outline"
                 className="border-white text-white w-full sm:w-auto"
